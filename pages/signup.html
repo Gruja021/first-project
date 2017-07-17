@@ -1,0 +1,38 @@
+		<div class="col-sm-offset-2 col-sm-8 col-xs-12 login_box">
+
+			<div class="col-xs-12 nopadding">
+				<div class="col-sm-offset-1 col-sm-10 col-xs-12" id="signup_data" on-enter>
+					<div class="form-group">
+						<input type="text" class="form-control" ng-model="user.username" data-type="username" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" ng-model="user.name" data-type="name" placeholder="Name/Surname">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" ng-model="user.email" data-type="email" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" ng-model="user.password" data-type="password" placeholder="Password">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" ng-model="user.conf_password" data-type="password" placeholder="Confirm password">
+					</div>
+					<div class="form-group select-group margin_top_40">
+						<select class="form-control" ng-model="user.questionId" ng-options="question.questionId as question.questionText for question in questions | orderBy:'country'">
+							<option value="" disabled selected>Select your security question</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" ng-model="user.answer" data-type="name" placeholder="Answer security question">
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xs-12">
+				<div class="col-sm-offset-1 col-sm-10 col-xs-12 login_button_div">
+					<button type="button" class="btn col-xs-12 btnBlue" ng-click="signup(user)" data-enter>SIGNUP</button>
+					<button type="button" class="btn col-xs-12 btn_orange" ng-click="goToSignIn()">Back to LOGIN</button>
+				</div>
+			</div>
+
+		</div>

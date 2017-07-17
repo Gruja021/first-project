@@ -1,0 +1,89 @@
+<!-- <div class="col-xs-12 btn_azure center margin_bottom_20">
+	<h4>{{user.username | uppercase}}</h4>
+</div>
+
+
+
+<div class="col-xs-12 margin_bottom_20" ng-show="showAllUsers">
+	<div ng-repeat="user in users" class="margin_bottom_20">
+		<h4>{{user.name | uppercase}}</h4>
+		<ul>
+			<li ng-repeat="rule in user.rules" class="pointer underline">{{rule}}</li>
+		</ul>
+	</div>
+</div>
+
+<div class="col-xs-12 center margin_bottom_20">
+	<button class="btn col-md-offset-1 col-xs-offset-0 col-md-10 col-xs-12 btn_azure margin_bottom_10" ui-sref="home.rule.new">New Rule</button>
+	<button class="btn col-md-offset-1 col-xs-offset-0 col-md-10 col-xs-12 btn_azure" ng-click="openNewCombinationDialog()">New Combination</button>
+</div>
+
+<div class="col-xs-12 center margin_bottom_20">
+	<h4>RULES</h4>
+	<div class="scroll_overflow">
+		<p ng-repeat="rule in rules" class="text_gray pointer underline" ng-click="getRuleData(rule.ruleId)">{{rule.ruleName}}</p>
+	</div>
+</div>
+<div class="col-xs-12 center">
+	<h4>COMBINATIONS</h4>
+	<div class="scroll_overflow">
+		<p ng-repeat="combination in combinations" class="text_gray pointer underline" ng-click="getCombinationData(combination.combinationId)">{{combination.combinationName}}</p>
+	</div>
+</div> -->
+<div class="col-xs-12">
+	<div class="col-xs-12 nopadding btn_aside btn_azure center margin_bottom_20">
+		<h4>User: {{user.name}}</h4>
+	</div>
+
+	<div class="col-xs-12 nopadding margin_top_10" ng-show="show.clicked==1 || show.clicked==3">
+		<!-- <select class=" pointer form-control" >
+			<option  >corpus</option>
+		</select> -->
+		<select class=" pointer form-control blueBorderColor corpusSelectForRulePage" ng-model="corpus.corpusId" ng-change="getCorpusForRulePage(corpus.corpusId)">
+		<option value="" disabled="" ng-selected="corpus.corpusId == corpusEdit.corpusId">corpus</option>
+			<option ng-repeat="corpus in allCorpus.allCorpus" ng-selected="corpus.corpusId == corpusEdit.corpusId" value="{{corpus.corpusId}}"  >{{$index+1}}. {{corpus.corpusName}}</option>
+		</select>
+	</div>
+
+	<!-- <div class="col-xs-12 btn_text_color btn_aside btnOrange center margin_bottom_20 pointer pointer" ng-hide="show.clicked == 1" ng-click="getAllCorpus(); show.clicked = 1; emptyInputOnRulePagepus()" ui-sref="home.rule.new"> -->
+	<div class="col-xs-12 btn_text_color btn_aside btnOrange center margin_bottom_20 pointer pointer" ng-hide="show.clicked == 1" ng-click=" goOnRulePage('rule')">
+		<h4>Rule Page</h4>
+
+	</div>
+	<div class="col-xs-12 btn_text_color btn_aside btnOrange center margin_bottom_20 pointer pointer" ng-show="show.clicked == 1" ng-click="clearAllInput()">
+		<h4>New Rule</h4>
+
+	</div>
+	<div class="col-xs-12  btn_text_color btn_aside btnOrange margin_bottom_20 allCorpus pointer" ng-show="show.clicked==1">
+		<h4 ng-repeat="oneRule in rules" value="oneRule.ruleId" ng-model="oneRule.ruleId" ng-click="getValueForEditRule(oneRule.ruleId)">{{$index + 1}}. {{oneRule.ruleName}}</h4>
+	</div>
+	<div class="col-xs-12  btn_text_color btn_aside btnOrange center margin_bottom_20 pointer" ng-show="show.clicked==1" ng-click="saveOrEditRule(rule)">
+		<h4>Save Rule</h4>
+	</div>
+	<!-- <div class="col-xs-12 btn_text_color btn_aside btn_green center margin_bottom_20 pointer" ng-hide="show.clicked == 3" ng-click=" show.clicked = 3; emptyInputOnRulePagepus()" ui-sref="home.history.new"> -->
+	<div class="col-xs-12 btn_text_color btn_aside btn_green center margin_bottom_20 pointer" ng-hide="show.clicked == 3" ng-click="goOnRulePage('history')">
+		<h4>History Page</h4>
+	</div>
+	<div class="col-xs-12 btn_text_color btn_aside btn_green center margin_bottom_20 pointer" ng-show="show.clicked == 3" ng-click="clearAllInput()">
+		<h4>New History</h4>
+	</div>
+	<div class="col-xs-12  btn_text_color btn_aside btn_green margin_bottom_20 allCorpus pointer" ng-show="show.clicked==3">
+		<h4 ng-repeat="oneHistory in allHistory" value="oneHistory.historyId" ng-model="oneHistory.historyId" ng-click="getValueForEditHistory(oneHistory.historyId)">{{$index + 1}}. {{oneHistory.historyName}}</h4>
+	</div>
+	<div class="col-xs-12 btn_text_color btn_aside btn_green center margin_bottom_20 pointer" ng-show="show.clicked == 3" ng-click="saveOrEditHistory('aside')">
+		<h4>Save History</h4>
+	</div>
+	<!-- <div class="col-xs-12  btn_text_color btn_aside btn_gray center margin_bottom_20 pointer" ng-hide="show.clicked == 2" ui-sref="home.corpus.new" ng-click="getAllCorpus(); show.clicked = 2; emptyInput()"> -->
+	<div class="col-xs-12  btn_text_color btn_aside btn_gray center margin_bottom_20 pointer" ng-hide="show.clicked == 2" ng-click="goOnRulePage('corpus')">
+		<h4>Corpus Page</h4>
+	</div>
+	<div class="col-xs-12  btn_text_color btn_aside btn_gray center margin_bottom_20 pointer" ng-click="clearAllInput()" ng-show="show.clicked==2" >
+		<h4>New Corpus</h4>
+	</div>
+	<div class="col-xs-12  btn_text_color btn_aside btn_gray margin_bottom_20 allCorpus pointer" ng-show="show.clicked==2" >
+		<h4 ng-repeat="corpus in allCorpus.allCorpus" value="corpus.corpusId" ng-model="corpus.corpusId" ng-click="getValueForEditCorpus(corpus.corpusId)">{{$index + 1}}. {{corpus.corpusName}}</h4>
+	</div>
+	<div class="col-xs-12  btn_text_color btn_aside btn_gray center margin_bottom_20 pointer" ng-click="saveCorpus(obJcorpus)" ng-show="show.clicked==2">
+		<h4>Save Corpus</h4>
+	</div>
+</div>

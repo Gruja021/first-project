@@ -1,0 +1,48 @@
+.bodyOverflow{
+	overflow-y: hidden;
+}
+
+#loginPage{
+	min-height: 1000px;
+    background-image: url("../img/portal.png");
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: top center !important;
+    background-repeat: no-repeat !important;
+    /*background-attachment: fixed;*/
+}
+
+#loginPage .login_box{
+	height: 100%;
+	background-color: white;
+	margin-top: 20%;
+	margin-bottom: 35%;
+    box-shadow: 0px 0px 10px grey;
+    padding: 5% 0 10% 0;
+}
+
+#loginPage .login_box .login_logo img{
+	width: 130px;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 20%;
+}
+
+.forgot_pass a{
+	color: gray;
+	font-size: 12px;
+	text-align: center;
+}
+
+.login_button_div{
+	margin-top: 30px;
+}
+
+.login_button_div button{	
+	margin-bottom: 10px;	 
+}
+
+.security_question{
+	text-align: center;
+}

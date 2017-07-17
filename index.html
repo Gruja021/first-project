@@ -1,0 +1,105 @@
+<!doctype html>
+<html ng-app='app'>
+<head>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="img/logo.png" type='image/x-icon'>
+	<title>Diachronix</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
+
+<!-- <link rel="stylesheet" href="bower_components/angular-virtual-keyboard/release/angular-virtual-keyboard.css"> -->
+<link rel="stylesheet" href="angular-virtual-keyboard-master/release/angular-virtual-keyboard.css">
+
+<!-- DIALOG -->
+
+ 	<link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css">
+	<link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.min.css">
+	<link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-plain.css">
+
+<!-- END DIALOG -->
+
+	<link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
+	<link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.min.css">
+
+	<!-- custom CSS -->	
+	<link href="css/index.css" rel="stylesheet" type="text/css">
+	<link href="css/login.css" rel="stylesheet" type="text/css">
+	<link href="css/home.css" rel="stylesheet" type="text/css">
+	<link href="css/aside.css" rel="stylesheet" type="text/css">
+	<link href="css/drag_and_drop.css" rel="stylesheet" type="text/css">
+	<link href="css/dialog.css" rel="stylesheet" type="text/css">
+	<link href="css/corpus.css" rel="stylesheet" type="text/css">
+	<link href="css/rulePage.css" rel="stylesheet" type="text/css">
+	<link href="css/history.css" rel="stylesheet" type="text/css">
+	
+</head>
+
+<body class="bodyOverflow">
+
+<div class="container-fluid nopadding" ui-view>
+	
+</div>
+
+<!-- dependencies -->
+<script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+<!-- <script src="bower_components/angular-virtual-keyboard/release/angular-virtual-keyboard.js"></script> -->
+<script src="angular-virtual-keyboard-master/release/angular-virtual-keyboard.js"></script>
+<script src="array.prototype.move-master/src/array-prototype-move.js"></script>
+<script src="bower_components/ng-dialog/js/ngDialog.min.js"></script>
+<script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="ngclipboard-master/dist/ngclipboard.min.js"></script>
+
+<script src="app.js"></script>
+
+<!-- Controllers -->
+<script src="js/controllers/loginCtrl.js"></script>
+<script src="js/controllers/signupCtrl.js"></script>
+<script src="js/controllers/forgotPassCtrl.js"></script>
+<script src="js/controllers/homeCtrl.js"></script>
+<script src="js/controllers/ruleCtrl.js"></script>
+<script src="js/controllers/newRuleCtrl.js"></script>
+<script src="js/controllers/editRuleCtrl.js"></script>
+<script src="js/controllers/combinationCtrl.js"></script>
+<script src="js/controllers/newCombinationCtrl.js"></script>
+<script src="js/controllers/editCombinationCtrl.js"></script>
+<script src="js/controllers/newCorpusCtrl.js"></script>
+<script src="js/controllers/corpusCtrl.js"></script>
+<script src="js/controllers/historyCtrl.js"></script>
+<script src="js/controllers/newHistoryCtrl.js"></script>
+
+<!-- Services -->
+<script src="js/services/APIService.js"></script>
+<script src="js/services/userService.js"></script>
+<script src="js/services/ruleService.js"></script>
+<script src="js/services/validationService.js"></script>
+<script src="js/services/shortcutService.js"></script>
+<script src="js/services/cookiesService.js"></script>
+<script src="js/services/clientMiddleware.js"></script>
+<script src="js/services/combinationService.js"></script>
+<script src="js/services/corpusService.js"></script>
+<script src="js/services/historyService.js"></script>
+
+<!-- Directives -->
+<script src="js/directives/aside.js"></script>
+<script src="js/directives/header.js"></script>
+<script src="js/directives/onEnter.js"></script>
+<script src="js/directives/shortcutKeyboard.js"></script>
+<script src="js/directives/matchHelp.js"></script>
+<script src="js/directives/matchHelpTransition.js"></script>
+<script src="js/directives/descriptionToggle.js"></script>
+<script src="js/directives/sortable.js"></script>
+<script src="js/directives/onSpace.js"></script>
+<script src="js/directives/resetCondition.js"></script>
+
+</body>
+</html>

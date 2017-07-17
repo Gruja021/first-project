@@ -1,0 +1,32 @@
+.borderGreen{
+	border: 1px solid #50b82e;
+}
+.borderGreenTop{
+	border-top: 1px solid #50b82e;
+}
+.colorGreen{
+	color: #50b82e;
+}
+.greenPartOfHistory input:focus{   
+  border-color: rgba(80, 184, 46, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(80, 184, 46, 0.6);
+  outline: 0 none;
+}
+
+.greenPartOfHistory select:focus{   
+  border-color: rgba(80, 184, 46, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(80, 184, 46, 0.6);
+  outline: 0 none;
+}
+.outerRuleInHistory{
+	border-radius:  4px;
+}
+.outerRuleInHistory button{
+	min-width: 60px;
+}
+.transformInput input:-moz-read-only{
+    background-color: white;
+}
+.transformInput input:read-only {
+    background-color: white;
+}

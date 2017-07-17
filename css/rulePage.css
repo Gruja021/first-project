@@ -1,0 +1,169 @@
+.corpusSelectForRulePage{
+
+}
+/*.rulePage{
+	padding-right: 15px;
+}*/
+.blueBorderColor{
+	border: 1px solid #3399ff;
+}
+.colorBlue{
+	color: #3399ff;
+}
+.blueBorderColor select{
+ 	color: #3399ff;
+ }
+ .blueBorderColor select option:first-child{
+  	color: #3399ff;
+}
+.inputCorpusForRule{
+    border-radius: 10px;
+}
+.inputCorpusForRule .topBottom{
+	margin-top: 20px;
+    margin-bottom: 15px;
+}
+.btnBlue{
+	background-color: #3399ff;
+}
+.rulePage .outerNewButon{
+	margin-left: 50px;
+}
+.inputCheckbox{
+	margin: 1px;
+}
+.outerCheckbox{
+	text-align: center;
+}
+.borderOrange{
+	border: 1px solid #ff9900;
+}
+.ruleDescription{
+	height: 100%;
+}
+.orangePartOfRule input:focus{   
+  border-color: rgba(255, 153, 0, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 153, 0, 0.6);
+  outline: 0 none;
+}
+
+.orangePartOfRule select:focus{   
+  border-color: rgba(255, 153, 0, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 153, 0, 0.6);
+  outline: 0 none;
+}
+.orangePartOfRule textarea:focus{   
+  border-color: rgba(255, 153, 0, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 153, 0, 0.6);
+  outline: 0 none;
+}
+
+.ruleDescription textarea{
+	display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ff9900;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    outline: none;
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.ruleDescription ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #ff9900;
+}
+.ruleDescription :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #ff9900;
+   opacity:  1;
+}
+.ruleDescription ::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #ff9900;
+   opacity:  1;
+}
+.ruleDescription :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #ff9900;
+}
+
+.ruleDescription ::-webkit-input-placeholder { text-align:left; }
+.ruleDescription ::-moz-placeholder { text-align:left; }
+.pddingLeftRight_30{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.outerCondition{
+	border-radius: 4px;
+}
+.outerCondition button{
+	margin-top: 0px;
+	min-width: 70px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.inSyllable{
+	text-align: right; 
+	min-width: 70px;
+}
+.backgroundCondition{
+	background-color: #ffe0b3;
+}
+.blueBorderColor .keyboard_image{
+	text-align: center;
+}
+.btnWhite{
+	background-color: white;
+}
+.colorWhite{
+	color: white;
+}
+.colorOrange{
+	color: #ff9900;
+}
+.backgroundTransform{
+	background-color: #ff9900;
+}
+.outerInsert{
+	border-left: 0px;
+	border-right: 0px;
+}
+ .outerInsert button{
+ 	margin-top: 0px;
+ }
+ .outerInsert select{
+ 	color: #ff9900;
+ }
+ .outerInsert select option:first-child{
+  	color: #ff9900;
+}
+.outerOutput button{
+	margin-top: 0px;
+}
+.verticalAlign{
+	margin-top: 4%;
+}
+.nextText{
+	padding-top: 2.5%;
+}
+.outputRule input:read-only {
+    background-color: white;
+}
+.conditionInput{
+	max-width: 63%;
+    float: left;
+}
+.btnCondition{
+	min-width: 72px;
+}
+.ruleTransform{
+	min-width: 95px;
+}
+@media (max-width: 991px){
+	.verticalAlign{
+		margin-top: 5%;
+	}
+}

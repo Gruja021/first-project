@@ -1,0 +1,28 @@
+<div class="col-md-12 rule_info">
+	<div class="col-md-12">
+		<div class="form-group col-md-8 col-xs-8">
+			<label>Owner</label>
+			<input type="text" class="form-control" placeholder="" ng-model="user.username" readonly>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="form-group col-md-12 col-xs-12">
+			<label>Combination Name</label>
+			<input type="text" class="form-control" placeholder="" ng-model="combination.combinationName">
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="form-group col-md-12 col-xs-12">
+			<label>Description</label>
+			<textarea rows="5" type="text" class="form-control" placeholder="" ng-model="combination.combinationDescription"></textarea>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="col-md-4">
+			<button class="btn col-md-8 col-sm-5 col-xs-4 btn_orange btn_big" ng-click='closeThisDialog(0)'>Return</button>
+		</div>
+		<div class="col-md-offset-4 col-md-4">
+			<button class="btn col-md-8 col-sm-5 col-xs-4 btn_azure btn_big pull-right" ng-click='saveCombination(combination);'>Save</button>
+		</div>
+	</div>
+</div>

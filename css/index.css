@@ -1,0 +1,170 @@
+/*PLACEHOLDER CENTER*/
+body ::-webkit-input-placeholder {
+   text-align: center;
+	opacity:1;
+}
+
+body :-moz-placeholder{ /* Firefox 18- */
+   text-align: center; 
+	opacity:1;   
+}
+
+body ::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+	opacity:1;
+}
+
+body :-ms-input-placeholder {  
+   text-align: center; 
+	opacity:1;
+}
+
+/*END PLACEHOLDER CENTER*/
+
+input{
+	/*border-radius: 0px !important;*/
+}
+
+button{
+	color: white;
+	/*border-radius: 0px !important;*/
+}
+
+
+.blueCorpusHeader{
+	margin-top: 20px;
+}
+.btn_aside{
+	border-radius: 5px !important;
+}
+
+.btn_azure{
+	background-color: white; 
+	border: 2px solid #ccc;
+	margin-top: 15px;
+	/*white-space: normal;
+	min-width: 100px;*/
+}
+
+.btn_text_color{
+	color: white;
+}
+.btn_orange{
+	background-color: #c07c28;
+}
+
+.btnOrange{
+	background-color: #ff9900;
+	margin-top: 10px;
+}
+
+.btn_green{
+	background-color: #50b82e;
+}
+
+.btn_gray{
+	background-color: #b3b3b3;
+}
+.allCorpus{
+	min-height: 500px;
+	max-height: 500px;
+	overflow-y: auto;
+	text-align: left;
+}
+
+.btn_big{
+	height: 33px;
+}
+
+.pointer{
+	cursor: pointer;
+}
+
+.underline:hover{
+	text-decoration: underline;
+}
+
+.center{
+	text-align: center;
+}
+
+.nopadding{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.nopaddingLeft{
+	padding-left: 0px;
+}
+.nopaddingRight{
+	padding-right: 0px;
+}
+.nopaddingV{
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
+}
+
+.margin_bottom_10{
+	margin-bottom: 10px;
+}
+.margin_bottom_5{
+	margin-bottom: 5px;
+}
+.margin_top_5{
+	margin-top: 5px;
+}
+.margin_top_15{
+	margin-top: 15px;
+}
+.margin_bottom_20{
+	margin-bottom: 20px;
+}
+
+.margin_top_20{
+	margin-top: 20px;
+}
+
+.margin_bottom_40{
+	margin-bottom: 40px;
+}
+
+.margin_top_40{
+	margin-top: 40px;
+}
+
+.position_top_20{
+	position: relative;
+	top:20px;
+}
+
+.position_bottom_20{
+	position: relative;
+	bottom:15px;
+}
+.margin_top_80{
+	margin-top: 80px;
+}
+
+table.keyboardInputMaster.relativeKeyboard{
+	border-radius: 0px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.transitionDivTop {
+ margin-top: 20px;
+}
+.transitionWhite{
+	background-color: white;
+	padding-bottom: 25px;
+}
+.pointer{
+	cursor:pointer;
+}
+.zindex {
+  z-index: 10000000;
+}
+.ngdialog-theme-plain{
+	z-index: 1000000;
+}

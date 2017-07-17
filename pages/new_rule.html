@@ -1,0 +1,464 @@
+<div class="col-xs-12 nopadding margin_top_20 headerTemplate rulePage">
+
+	<!-- <div class="form-group col-xs-12" keyboard>
+		<div class="col-md-2 col-xs-3">
+			<h4>Enter input text: </h4>
+		</div>
+		<div class="col-md-4 col-sm-4 col-xs-4">
+			<textarea class="" rows="1" id="inputWord" shortcut-keyboard ng-virtual-keyboard ng-model="rule.inputWord" placeholder="Input text"></textarea>
+			
+		</div>
+		<div class="col-xs-1 keyboard_image">
+			<img src="img/keyboard_2x.png" class="pointer" id="open_keyboard">
+		</div>
+		 <div class="col-xs-2">
+			<p class="pointer underline" ng-click="openConsonantPNG()"><strong>Consonant</strong></p>
+			<p class="pointer underline" ng-click="openVowelsPNG()"><strong>Vowels</strong></p>
+		</div>
+		<div class="col-xs-2" ng-show="showInfo">
+			<button class="btn col-xs-8 btn_azure" ng-click="openInfo()">Info</button>
+		</div>	
+	</div>
+	
+</div>
+
+<script type="text/ng-template" id="ConsonantPNG">
+	<div>
+		 <img src="img/consonants.png">
+	</div> 
+</script>
+
+<script type="text/ng-template" id="VowelsPNG">
+	<div>
+		 <img src="img/vowels.png">
+	</div> 
+</script>
+
+<div class="col-xs-12 positionDiv margin_bottom_20">
+	<div class="col-xs-12">
+		<div class="col-md-2 col-xs-3">
+			<h4><strong>POSITION: </strong></h4>
+		</div>
+		<div class="form-group col-md-4 col-xs-4">
+			<input type="text" class="form-control" placeholder="+_POS." ng-model="rule.position">
+		</div>
+	</div>
+</div>
+
+<div class="col-xs-12 conditionsDiv">
+
+	<div class="col-xs-12 condition" ng-repeat="condition in rule.matchDto" match-help>
+		<div class="col-xs-12">
+			<h4><strong>CONDITION {{$index + 1}}</strong></h4>
+		</div>
+		<div class="col-xs-12">
+			<div class="col-md-2 col-xs-2">
+				<h4>Match:</h4>
+			</div>
+			<div class="form-group col-md-4 col-xs-4">
+				<input type="text" class="form-control m_offset_input" data-condition-match="mOffset" placeholder="M_offset." ng-model="condition.mOffset">
+			</div>
+			<div class="col-md-1 col-xs-1">
+				<button class="btn btn_orange m_offset_btn" title="Display classes">+</button>
+			</div>
+			<div class="form-group col-md-4 col-xs-4">
+				<input type="text" class="form-control m_re_input" data-condition-match="mRe" placeholder="M_re" ng-model="condition.mRe">
+			</div>
+			<div class="col-md-1 col-xs-1">
+				<button class="btn btn_orange m_re_btn" title="Display classes">+</button>
+			</div>
+		</div>
+		<div class="col-xs-12 margin_bottom_20">
+			<div class="col-xs-offset-9 col-xs-1 nopadding">
+				<button class="btn btn-default btn_gray" ng-click="deleteCondition(rule, $index)" title="Delete condition">Delete</button>
+			</div>
+		</div>
+		<div class="col-xs-12 helpDiv" style="display:none">
+			<div class="col-xs-12 margin_bottom_20">
+				<div class="col-md-3 col-xs-3">
+					<div title="{{class.letters.join(' ')}}" class="checkbox" ng-repeat="class in classes | filter: {group: 1}">
+					  <label><input type="checkbox" class="checkbox_letters" ng-model="class.selected">{{class.name}}</label>
+					</div>
+				</div>
+				<div class="col-md-3 col-xs-3">
+					<div title="{{class.letters.join(' ')}}" class="checkbox" ng-repeat="class in classes | filter: {group: 2}">
+					  <label><input type="checkbox" class="checkbox_letters" ng-model="class.selected">{{class.name}}</label>
+					</div>
+				</div>
+				<div class="col-md-3 col-xs-3">
+					<div title="{{class.letters.join(' ')}}" class="checkbox" ng-repeat="class in classes | filter: {group: 3}">
+					  <label><input type="checkbox" class="checkbox_letters" ng-model="class.selected">{{class.name}}</label>
+					</div>
+				</div>
+				<div class="col-md-3 col-xs-3">
+					<div title="{{class.letters.join(' ')}}" class="checkbox" ng-repeat="class in classes | filter: {group: 4}">
+					  <label><input type="checkbox" class="checkbox_letters" ng-model="class.selected">{{class.name}}</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<div class="form-group col-xs-offset-0 col-xs-4 nopadding">
+					<input type="text" ng-model="intersectionLetters" class="form-control" placeholder="result" readonly>
+				</div>
+				<div class="col-xs-offset-1 col-xs-2 checkbox">
+					<label><input type="checkbox" ng-model="brackets">Two brackets</label>
+				</div>
+				<div class="col-xs-offset-1 col-xs-2 nopadding">
+					<button class="btn btn-default btn_gray apply_help">Apply</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xs-12">
+		<div class="col-md-offset-8 col-md-4 col-xs-offset-7 col-xs-5 pointer new_condition_btn" ng-click="addNewCondition(rule)">
+			<span>Add New Condition</span>
+			<img src="img/+_2x.png">
+		</div>
+	</div>
+
+</div>
+
+<div class="col-xs-12 transitionDiv transitionDivTop margin_bottom_40" match-help-transition>
+	<div class="col-xs-12 transition transitionWhite">
+		<div class="col-xs-12">
+			<h4><strong>TRANSITION: </strong></h4>
+		</div>
+		<div class="form-group col-md-4 col-xs-4">
+			<input type="text" class="form-control t_source_input" data-rule-match="tSource" placeholder="t_source." ng-model="rule.tSource">
+		</div>
+		<div class="col-md-1 col-xs-1">
+			<button class="btn btn_orange t_source_btn" title="Display classes">+</button>
+		</div>
+		<div class="form-group col-md-4 col-xs-4">
+			<input type="text" class="form-control t_dest_input" data-rule-match="tDest" placeholder="t_dest." ng-model="rule.tDest">
+		</div>
+
+		<div class="col-xs-12 helpDiv" style="display:none">
+			<div class="col-xs-12 margin_bottom_20">
+				<div class="col-md-3 col-xs-3">
+					<div title="{{class.letters.join(' ')}}" class="checkbox" ng-repeat="class in classes | filter: {group: 1}">
+					  <label><input type="checkbox" class="checkbox_letters" ng-model="class.selected">{{class.name}}</label>
+					</div>
+				</div>
+				<div class="col-md-3 col-xs-3">
+					<div title="{{class.letters.join(' ')}}" class="checkbox" ng-repeat="class in classes | filter: {group: 2}">
+					  <label><input type="checkbox" class="checkbox_letters" ng-model="class.selected">{{class.name}}</label>
+					</div>
+				</div>
+				<div class="col-md-3 col-xs-3">
+					<div title="{{class.letters.join(' ')}}" class="checkbox" ng-repeat="class in classes | filter: {group: 3}">
+					  <label><input type="checkbox" class="checkbox_letters" ng-model="class.selected">{{class.name}}</label>
+					</div>
+				</div>
+				<div class="col-md-3 col-xs-3">
+					<div title="{{class.letters.join(' ')}}" class="checkbox" ng-repeat="class in classes | filter: {group: 4}">
+					  <label><input type="checkbox" class="checkbox_letters" ng-model="class.selected">{{class.name}}</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<div class="form-group col-xs-offset-0 col-xs-4 nopadding">
+					<input type="text" ng-model="intersectionLetters" class="form-control" placeholder="result" readonly>
+				</div>
+				<div class="col-xs-offset-1 col-xs-2 checkbox">
+					<label><input type="checkbox" ng-model="brackets">Two brackets</label>
+				</div>
+				<div class="col-xs-offset-1 col-xs-2 nopadding">
+					<button class="btn btn-default btn_gray apply_help">Apply</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-xs-12 outputWordDiv margin_bottom_40">
+	<div class="col-xs-12 outputWord">
+		<div class="col-xs-offset-1 col-md-2 col-xs-3">
+			<h2>Output text:</h2>
+		</div>
+		<div class="form-group col-xs-offset-2 col-md-2 col-xs-2">
+			<img src="img/=_2x.png" alt="" class="pointer" width="60px;" ng-click="ruleTransform(rule)">
+		</div>
+		<div class="form-group col-md-4 col-xs-4">
+			
+			<textarea rows="1" class="form-control position_top_20" ng-model="rule.outputWord" readonly placeholder="Output text"></textarea>
+		</div>
+	</div>
+</div>
+
+<div class="col-xs-12 ruleBtnDiv margin_bottom_40">
+	<div class="col-xs-offset-6 col-xs-6 ruleBtn">
+		<div class="col-md-4 col-xs-3">
+			<button class="btn col-md-8 btn_orange btn_big" ng-click="back()">Return</button>
+		</div>
+		<div class="col-md-4 col-xs-2">
+			<button class="btn col-md-8 btn_azure btn_big" ng-show="showSaveAs" ng-click="openSaveAs(rule)">Save as</button>
+		</div>
+		<div class="col-md-4 col-xs-4">
+			<button class="btn col-md-8 btn_azure btn_big" title="{{rule.editable ? '' : rule.message}}" ng-disabled="rule.editable === false" ng-click="openSave(rule)">Save</button>
+		</div>
+	</div> -->
+	<div class="col-xs-12 outerRuleForm">
+		<!-- <div class="col-xs-12 inputCorpusForRule blueBorderColor nopadding" >
+			<div class="col-xs-12 topBottom" >
+				<div keyboard>
+					<div class="col-xs-1"><h4 class="colorBlue">Input</h4></div>
+					<div class=" col-xs-2">
+						<textarea class="inputWord" rows="1" id="inputWord" shortcut-keyboard ng-virtual-keyboard ng-model="obj.word.wordName" ng-keypress="clickOnspaceEdit($event, obj.word.wordName)" ng-click="focusedTextarea()" ng-disabled="disabled_button" ></textarea>
+						
+					</div>
+					<div class="col-xs-3 nopaddingLeft">
+						<div class="col-xs-1"><label style="margin-top: 6px;"><input class="inputCheckbox" type="checkbox" value="" ng-model="rule.editAutomaticSyllable" ng-click="automaticSyllable('edit')"></label></div>
+						<div class="col-xs-5 keyboard_image">
+							<img src="img/keyboard_2x.png" class="pointer" id="open_keyboard">
+						</div>
+						<div class="col-xs-5 nopadding pull-right">
+							<select ng-disabled="disabled_button" class=" pointer form-control blueBorderColor selectStress" ng-model="obj.stress" ng-change="changeStress(obj.stress)" >
+								<option value="" disabled="">Stress</option>
+								<option value="'">Primary</option>
+								<option value=",">Secondary</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-2">
+						<button class="btn col-xs-12 btnBlue btn_big" ng-disabled="disabled_button" ng-click="editWord()">Save</button>
+					</div>
+					<div class="col-xs-2">
+						<button class="btn col-xs-12 btnBlue btn_big" ng-disabled="disabled_button" ng-click="nextWord()">next</button>
+					</div>
+					<div class="col-xs-2">
+						<button class="btn col-xs-12 btnBlue btn_big" ng-disabled="disabled_button" ng-click="saveNewCorpus = !saveNewCorpus">New</button>
+					</div>
+				</div>
+				<div class="col-xs-12 nopadding margin_top_15 margin_bottom_5"  ng-class="{'showDiv' : !saveNewCorpus }" keyboard>
+					<div class="col-xs-1"></div>
+					<div class="col-md-2 col-sm-2 col-xs-2">
+						<textarea type="text" class="" rows="1" id="inputWords" shortcut-keyboard ng-virtual-keyboard ng-model="obj.word.newWordName" ng-keypress="clickOnspaceSave($event, obj.word.newWordName)"></textarea>
+					</div>
+					
+					<div class="col-xs-3 nopaddingLeft">
+						<div class="col-xs-1"><label style="margin-top: 6px;"><input class="inputCheckbox" type="checkbox" value="" ng-model="rule.saveAutomaticSyllable" ng-click="automaticSyllable('save')"></label></div>
+						<div class="col-xs-5 keyboard_image">
+							<img src="img/keyboard_2x.png" class="pointer" id="open_keyboards">
+						</div>
+						<div class="col-xs-5 nopadding">
+							
+						</div>
+					</div>
+					
+					<div class="col-xs-2">
+						<button class="btn col-xs-12 btnBlue btn_big" ng-click="saveWord(); saveNewCorpus = !saveNewCorpus">Save</button>
+					</div>
+				</div>
+			</div>
+		</div> -->
+		<div class="col-xs-12 inputCorpusForRule borderOrange nopadding margin_top_20 orangePartOfRule" match-help>
+			<div class="col-xs-12 nopadding topBottom" style="margin-bottom: 0px;">
+				<div class="col-xs-2">
+					<div class="col-xs-12 colorOrange">Sylablle</div>
+					<div class="col-xs-12">
+						<select class=" pointer form-control borderOrange corpusSelectForRulePage" ng-model="rule.syllable" ng-change="positionOfSylable(rule.syllable); checkChangeRulePart()" title="Select the syllable number">
+							<option ng-selected="ruleEdit.syllable == rule.syllable">Any</option>
+							<option ng-selected="ruleEdit.syllable == rule.syllable">First</option>
+							<option ng-selected="ruleEdit.syllable == rule.syllable">Second</option>
+							<option ng-selected="ruleEdit.syllable == rule.syllable">Penultimate</option>
+							<option ng-selected="ruleEdit.syllable == rule.syllable">Last</option>
+							<!-- <option >No ...</option> -->
+						</select>
+					</div>
+				</div>
+				<div class="col-xs-4">
+					<div class="col-xs-12 colorOrange">Rule Name</div>
+					<div class="col-xs-12 nopaddingRight">
+						<input type="text" class="form-control borderOrange" ng-model="rule.ruleName" ng-change="checkChangeRulePart()">
+					</div>
+				</div>
+				<div class="col-xs-6 nopaddingLeft">
+					<div class="col-xs-12 ruleDescription">
+						<textarea  class="" placeholder="Rule Description" rows="2" ng-model="rule.ruleDescription" ng-change="checkChangeRulePart()"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12" ng-repeat="condition in rule.matchDto">
+				<div class="col-xs-12">
+					<div class="col-xs-12 borderOrange backgroundCondition col-xs-12 margin_top_20 outerCondition">
+						<div class="col-xs-12 nopadding topBottom" reset-condition>
+							<!-- <div class="col-xs-1"><h5>Condition1</h5></div>
+							<div class="col-xs-1"><h5>In syllable</h5></div>
+							<div class="col-xs-1">
+								<select class=" pointer form-control borderOrange corpusSelectForRulePage">
+									<option value="" disabled="" selected></option>
+									<option >1</option>
+									<option >2</option>
+									<option >3</option>
+									<option >4</option>
+									<option >5</option>
+								</select>
+							</div>
+							<div class="col-xs-1"><h5>Find:</h5></div> -->
+							<div class="col-xs-2 nopadding" style="min-width: 150px">
+								<div class="col-xs-7 nopadding"><h5 class="colorOrange">Condition {{$index + 1}}</h5></div>
+								<div class="col-xs-5 nopaddingRight"><h5 class="inSyllable colorOrange">In syllable</h5></div>
+							</div>
+							<div class="col-xs-2 nopaddingRight">
+								<div class="col-xs-8 nopaddingRight">
+									<select class=" pointer form-control borderOrange corpusSelectForRulePage" ng-model="condition.mOffset" ng-change="syllableInCondition(); checkChangeRulePart()" title="Use this drop-down list to select the relative position of the sylablle">
+										<!-- <option value="" disabled="" selected></option> -->
+										<option >-5</option>
+										<option >-4</option>
+										<option >-3</option>
+										<option >-2</option>
+										<option >-1</option>
+										<option >0</option>
+										<option >1</option>
+										<option >2</option>
+										<option >3</option>
+										<option >4</option>
+										<option >5</option>
+									</select>
+								</div>
+								<div class="col-xs-4 nopaddingRight"><h5 class="colorOrange" style="text-align: right;">Find:</h5></div>
+							</div>
+							<div class="col-xs-3">
+								<input id="inputCodition{{$index}}" type="text" class="form-control borderOrange focused keyboardInput conditionInput" shortcut-keyboard ng-virtual-keyboard="{imageURI: 'img/keyboard_2x.png'}" data-condition-match="mOffset" ng-model="condition.mRe" ng-click="focusedInput()" ng-change="checkChangeRulePart()" title="Enter pattern. Use also Anything & Group buttons">
+								<!-- <img src="img/keyboard_2x.png" class="pointer keyboardInputInitiator"> -->
+							</div>
+							<!-- <div class="col-xs-1 keyboard_image nopaddingRight" style="text-align: center;">
+								<img src="img/keyboard_2x.png" class="pointer keyboardInputInitiator" id="openClose" ng-click="hideKeyboard()" >
+							</div> -->
+							<!-- <div class="col-xs-1"></div> -->
+							<div class="col-xs-1 btnCondition">
+								<button class="btn col-xs-12 btnOrange reset btn_big" ng-click="resetCondition(condition.mOffset)" title="Reset the condition">Reset</button>
+							</div>
+							
+							<div class="col-xs-1 btnCondition">
+								<button class="btn col-xs-12 btnOrange  btn_big" ng-click="deleteCondition(rule, $index); checkChangeRulePart()" title="Delete the condition">Delete</button>
+							</div>
+							
+							<div class="col-xs-1 btnCondition">
+								<button class="btn col-xs-12 btnOrange  btn_big" ng-click="addNewCondition(rule)" title="Add new condition">Add</button>
+							</div>
+							<div class="col-xs-1 checkbox pull-right">
+								<label class="colorOrange" title="Negative"><input class="inputCheckbox" type="checkbox" value="" ng-model="condition.mn" ng-click="checkChangeRulePart()">Invert</label> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 margin_top_80">
+				<div class="col-xs-12">
+					<div class="col-xs-12 borderOrange backgroundTransform col-xs-12 margin_top_5 outerCondition">
+						<div class="col-xs-12 nopadding topBottom">
+							<div class="col-xs-1 nopadding">
+								<div class="col-xs-12 nopaddingLeft"><h5 class="colorWhite">Transform</h5></div>
+							</div>
+							<div class="col-xs-3" style="min-width:200px;">
+								<!-- <div class="col-xs-12 nopaddingLeft"> -->
+									<input type="text" class="form-control borderOrange" shortcut-keyboard ng-virtual-keyboard="{imageURI: 'img/keyboard_2x.png'}" ng-model="rule.tSource" ng-click="focusedInput()" title="Enter pattern. Use also Anything & Group buttons" style="width: 63%; float: left;" ng-change="checkChangeRulePart()">
+								<!-- </div> -->
+								<!-- <div class="col-xs-2"><h5 class="colorWhite" style="text-align: left;">to:</h5></div> -->
+							</div>
+							<div class="col-xs-1"><h5 class="colorWhite" style="text-align: center;">to:</h5></div>
+							
+							<div class="col-xs-3">
+								<input type="text" class="form-control borderOrange" style="width: 63%; float: left;" shortcut-keyboard ng-virtual-keyboard="{imageURI: 'img/keyboard_2x.png'}" ng-model="rule.tDest" ng-change="checkChangeRulePart()">
+							</div>
+							<div class="col-xs-1 ruleTransform">
+								<button class="btn col-xs-12 btnWhite colorOrange btn_big" ng-click="resetTransform()" title="Reset the transformation">Reset</button>
+							</div>
+							<div class="col-xs-2">
+								<button class="btn col-xs-12 btnWhite colorOrange btn_big" ng-click="transform()" title="Perform the transformation">Transform</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 margin_top_20">
+				<div class="col-xs-12">
+					<div class="col-xs-12 borderOrange col-xs-12 margin_top_5 outerInsert">
+						<div class="col-xs-12 nopadding topBottom">
+							<div class="col-xs-1 nopadding">
+								<div class="col-xs-12 nopaddingLeft"><h5 class="colorOrange">Insert</h5></div>
+							</div>
+							<div class="col-xs-2">
+								<button class="btn col-xs-12 btnOrange   btn_big" ng-click="changeStress('.*')" title="Insert (.*) convention for anything">Anything</button>
+							</div>
+							<div class="col-xs-1"></div>
+							<div class="col-xs-2">
+								<button class="btn col-xs-12 btnOrange btn_big m_offset_btn" title="Select a phonological group to enter">Group</button><!-- ng-click="openGroup = !openGroup" -->
+							</div>
+							<div class="col-xs-2 keyboard_image nopaddingRight" style="text-align: center;">
+								<!-- <img src="img/keyboard_2x.png" class="pointer" id="openClose" ng-click="hideKeyboard()"> -->
+							</div>
+							<div class="col-xs-2">
+								<div class="col-xs-12 nopadding">
+									<select class=" pointer form-control borderOrange corpusSelectForRulePage" ng-model="obj.insertStres" ng-change="changeStress(obj.insertStres)" ng-click="clickOnChangeStres()" title="Insert a stress mark">
+										<option value="" disabled="">Stress</option>
+										<option value="'">Primary</option>
+										<option value=",">Secondary</option>
+									</select>
+								</div>	
+							</div>
+							<div class="col-xs-2">
+								<!-- <button class="btn col-xs-12 btnOrange btn_big delete">Delete</button> -->
+							</div>
+							<div class="col-xs-12 nopadding helpDiv" style="display:none"><!-- ng-class="{'showDiv' : !openGroup }" -->
+								<div class="col-xs-12 margin_top_20 nopadding">
+									<div class="col-md-3 col-xs-3 nopadding">
+										<div title="{{class.letters.join(' ')}}" class="checkbox" ng-repeat="class in classes | filter: {group: 1}">
+										  <label ><input ng-click="createArrayGroup(class.name)" type="checkbox" class="checkbox_letters" ng-model="class.selected">{{class.name}}</label>
+										</div>
+									</div>
+									<div class="col-md-3 col-xs-3">
+										<div title="{{class.letters.join(' ')}}" class="checkbox" ng-repeat="class in classes | filter: {group: 2}">
+										  <label ><input ng-click="createArrayGroup(class.name)" type="checkbox" class="checkbox_letters" ng-model="class.selected">{{class.name}}</label>
+										</div>
+									</div>
+									<div class="col-md-3 col-xs-3">
+										<div title="{{class.letters.join(' ')}}" class="checkbox" ng-repeat="class in classes | filter: {group: 3}">
+										  <label ><input ng-click="createArrayGroup(class.name)" type="checkbox" class="checkbox_letters" ng-model="class.selected">{{class.name}}</label>
+										</div>
+									</div>
+									<div class="col-md-3 col-xs-3">
+										<div title="{{class.letters.join(' ')}}" class="checkbox" ng-repeat="class in classes | filter: {group: 4}">
+										  <label ><input ng-click="createArrayGroup(class.name)" type="checkbox" class="checkbox_letters" ng-model="class.selected">{{class.name}}</label>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12 topBottom nopadding" >
+									<div class="col-xs-6 nopadding">
+										<input type="text" ng-model="intersectionLetters" class="form-control borderOrange" placeholder="result" readonly >
+									</div>
+									<div class="col-xs-1"></div>
+									<div class="col-xs-2"><label style="margin-top: 6px;"><input class="inputCheckbox" type="checkbox" value="" ng-model="brackets">Two brackets</label></div>
+									<div class="col-xs-1"></div>
+									<div class="col-xs-2">
+										<button class="btn col-xs-12 btnOrange btn_big" ng-click="applayGroupName()" title="Apply a phonological">Apply</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 margin_top_20 margin_bottom_20">
+				<div class="col-xs-12">
+					<div class="col-xs-12 col-xs-12 margin_top_5 outerOutput">
+						<div class="col-xs-12 nopadding topBottom">
+							<div class="col-xs-1 nopadding">
+								<div class="col-xs-12 nopaddingLeft"><h5 class="colorOrange">Output</h5></div>
+							</div>
+							<div class="col-xs-5 outputRule">
+								<input type="text" class="form-control borderOrange" ng-readonly="disabledInputField" ng-model="rule.outputWord" title="Transformed Text" id="outputRule" ngclipboard data-clipboard-target="#outputRule">
+							</div>
+							<div class="col-xs-2">
+								<button class="btn col-xs-12 btnOrange btn_big copytext" ng-click="copyContentFromInput(rule.outputWord)" title="Copy to the clipboard the transformed text">Copy</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

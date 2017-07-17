@@ -1,0 +1,17 @@
+#asideTemplate{
+	/*color: #efefef;*/
+	min-width: 200px;
+	min-height: 1000px;
+	background: white;
+	float: left;
+}
+
+.text_gray{
+	color: #8f9091;
+}
+
+.scroll_overflow{
+	height: 300px;
+	overflow-y: scroll;
+}
+

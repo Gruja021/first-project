@@ -1,0 +1,20 @@
+<div class="col-md-12 rule_info">
+	<div class="col-md-12">
+		<h2 class="text-center">{{combinationDialogText}}</h2>
+	</div>
+	<div class="col-md-12 rulesForCombinationDiv margin_bottom_10">
+		<div class="checkbox col-sm-offset-4 col-sm-4 col-xs-offset-2 col-xs-8 text-left" ng-repeat="rule in rules">
+			<label><input type="checkbox" ng-model="rule.forCombination" >{{rule.ruleName}}</label>
+			<span ng-show="combination.rulesIds.indexOf(rule.ruleId) > -1 && !showCreateCombination">*</span>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="col-md-4">
+			<button class="btn col-md-8 col-sm-5 col-xs-4 btn_orange btn_big" ng-click='closeThisDialog(0)'>Return</button>
+		</div>
+		<div class="col-md-offset-4 col-md-4">
+			<button class="btn col-md-8 col-sm-5 col-xs-4 btn_azure btn_big pull-right" ng-click="createNewCombination(combination);" ng-show="showCreateCombination">Create</button>
+			<button class="btn col-md-8 col-sm-5 col-xs-4 btn_azure btn_big pull-right" ng-click="addNewRule(combination);" ng-show="!showCreateCombination">Add</button>
+		</div>
+	</div>
+</div>

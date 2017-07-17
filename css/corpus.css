@@ -1,0 +1,38 @@
+.corpus{
+	margin-top: 27px;
+}
+.corpus .col-xs-9{
+	/*border: 1px solid red;*/
+}
+.corpus .col-xs-3{
+	/*border: 1px solid black;*/
+}
+.corpusName{
+	border-radius: 5px;
+	height: 40px;
+} 
+.corpusAtribute{
+	border: 1px solid #b3b3b3;
+	margin-top: 20px;
+	border-radius: 10px;
+}
+.corpus select{
+	
+}
+.corpusAtribute .col-xs-12{
+	margin-top: 20px;
+	margin-bottom: 15px;
+}
+.showDiv{
+	display: none;
+	margin-bottom: 0px;
+}
+.father{
+	margin-top: 80px;
+}
+.corpus textarea{
+	height: 580px;
+	border-radius: 10px;
+	resize: none;
+	word-break: break-all;
+}

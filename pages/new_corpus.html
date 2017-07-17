@@ -1,0 +1,119 @@
+<div class="col-xs-12 nopadding headerTemplate corpus">
+	<div class="col-xs-9">
+		<div class="form-group col-xs-12">
+			<input type="text" class="form-control corpusName" ng-model="obJcorpus.corpusName" placeholder="Corpus Name" ng-change="checkChangeCorpusPart()">
+			<div class="col-xs-12 corpusAtribute nopadding">
+				<div class="col-xs-12 ">
+					<div class="col-xs-2"><h4>Language</h4></div>
+					<div class="col-xs-8 nopadding">
+						<select class=" pointer form-control"  ng-model="obJcorpus.languageId" ng-change="checkChangeCorpusPart()">
+							<option ng-selected="obJcorpus.languageId == language.languageId" ng-repeat="language in corpus.languageDto" value="{{language.languageId}}">{{language.languageName}}</option>
+						</select>
+						<!-- <select class=" pointer form-control" ng-options="language.languageName for language in corpus.languageDto" ng-model="obJcorpus.languageId" >
+							
+						</select> -->
+						
+							
+						
+					</div>
+						<div class="col-xs-2 nopadding">
+						<button class="btn col-xs-9 btn_gray btn_big pull-right" ng-click="saveNewCorpus = !saveNewCorpus">New</button>
+					</div>
+					<div class="col-xs-12 nopadding" style="margin-bottom: 5px" ng-class="{'showDiv' : !saveNewCorpus }">
+						<div class="col-xs-2"></div>
+						<div class="col-xs-8 nopadding">
+							
+								<input type="text" class="form-control inputNewAtribute" ng-model="save.newLanguage" placeholder="New Language" >
+							
+						</div>
+							<div class="col-xs-2 nopadding">
+							<button class="btn col-xs-9 btn_gray btn_big pull-right" ng-click="saveNewLanguage(save.newLanguage); saveNewCorpus = !saveNewCorpus">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 corpusAtribute nopadding">
+				<div class="col-xs-12 ">
+					<div class="col-xs-2"><h4>Dialect</h4></div>
+					<div class="col-xs-8 nopadding">
+						<select class=" pointer form-control" ng-model="obJcorpus.dialectId" ng-change="checkChangeCorpusPart()">
+							<option ng-selected="obJcorpus.dialectId == dialect.dialectId" ng-repeat="dialect in corpus.dialectDto" value="{{dialect.dialectId}}">{{dialect.dialectName}}</option>
+						</select>
+					</div>
+						<div class="col-xs-2 nopadding">
+						<button class="btn col-xs-9 btn_gray btn_big pull-right" ng-click="saveNewDialect = !saveNewDialect">New</button>
+					</div>
+					<div class="col-xs-12 nopadding" style="margin-bottom: 5px" ng-class="{'showDiv' : !saveNewDialect }">
+						<div class="col-xs-2"></div>
+						<div class="col-xs-8 nopadding">
+							
+								<input type="text" class="form-control inputNewAtribute" ng-model="save.newDialect" placeholder="New Dialect" >
+							
+						</div>
+							<div class="col-xs-2 nopadding">
+							<button class="btn col-xs-9 btn_gray btn_big pull-right" ng-click="saveNewDialects(save.newDialect); saveNewDialect = !saveNewDialect">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 corpusAtribute nopadding">
+				<div class="col-xs-12 ">
+					<div class="col-xs-2"><h4>Period</h4></div>
+					<div class="col-xs-8 nopadding">
+						<select class=" pointer form-control" ng-model="obJcorpus.periodId" ng-change="checkChangeCorpusPart()">
+							<option ng-selected="obJcorpus.periodId == period.periodId" ng-repeat="period in corpus.periodDto" value="{{period.periodId}}">{{period.periodName}}</option>
+						</select>
+					</div>
+						<div class="col-xs-2 nopadding">
+						<button class="btn col-xs-9 btn_gray btn_big pull-right" ng-click="saveNewPeriod = !saveNewPeriod">New</button>
+					</div>
+					<div class="col-xs-12 nopadding" style="margin-bottom: 5px" ng-class="{'showDiv' : !saveNewPeriod }">
+						<div class="col-xs-2"></div>
+						<div class="col-xs-8 nopadding">
+							
+								<input type="text" class="form-control inputNewAtribute" ng-model="save.newPeriod" placeholder="New Period" >
+							
+						</div>
+							<div class="col-xs-2 nopadding">
+							<button class="btn col-xs-9 btn_gray btn_big pull-right" ng-click="saveNewPeriods(save.newPeriod); saveNewPeriod = !saveNewPeriod">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 corpusAtribute nopadding father">
+				<div class="col-xs-12 ">
+					<div class="col-xs-2"><h4>Father</h4></div>
+					<div class="col-xs-8 nopadding">
+						<select class=" pointer form-control" ng-model="obJcorpus.fatherId" ng-change="checkChangeCorpusPart()">
+							<option ng-selected="obJcorpus.fatherId == father.fatherId" ng-repeat="father in corpus.fatherDto" value="{{father.fatherId}}">{{father.fatherName}}</option>
+						</select>
+					</div>
+						<div class="col-xs-2 nopadding">
+						<button class="btn col-xs-9 btn_gray btn_big pull-right" ng-click="getValueForEditCorpus(obJcorpus.fatherId)" >Go To</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 corpusAtribute nopadding history">
+				<div class="col-xs-12 ">
+					<div class="col-xs-2"><h4>History</h4></div>
+					<div class="col-xs-8 nopadding">
+						<select class=" pointer form-control" ng-model="obJcorpus.historyCorpusId" ng-change="checkChangeCorpusPart()">
+							<option ng-selected="obJcorpus.historyCorpusId == history.historyCorpusId" ng-repeat="history in corpus.historyCorpusDto" value="{{history.historyCorpusId}}">{{history.historyCorpusName}}</option>
+						</select>
+					</div>
+						<div class="col-xs-2 nopadding">
+						<button class="btn col-xs-9 btn_green btn_big pull-right" ng-click="goToOnHistory(obJcorpus.historyCorpusId)">Go To</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="col-xs-3">
+		<textarea class="form-control" type="text" id="comment" ng-model="obJcorpus.text" ng-keypress="goToOnSpace($event, obJcorpus.text)" ng-change="checkChangeCorpusPart()"></textarea>
+		<!-- <div class="col-xs-12  btn_text_color btn_aside btn_gray center margin_bottom_20 pointer" ng-click="saveCorpus(obJcorpus)" style="margin-top:40px">
+			<h4>save Corpus</h4>
+		</div> -->
+	</div>
+
+</div>

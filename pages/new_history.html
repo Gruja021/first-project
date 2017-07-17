@@ -1,0 +1,139 @@
+<div class="col-xs-12 nopadding margin_top_20 headerTemplate historyPage greenPartOfHistory">
+	<div class="col-xs-12 outerHistoryForm">
+		<div class="col-xs-12 inputCorpusForRule borderGreen " >
+			<div class="col-xs-12 nopadding">
+				<div class="col-xs-12 nopaddingRight">
+					<div class="col-xs-12 col-xs-12 outerOutput nopadding">
+						<div class="col-xs-12 nopadding topBottom">
+							<div class="col-xs-1 nopadding">
+								<div class="col-xs-12 nopadding"><h4 class="colorGreen">Name</h4></div>
+							</div>
+							<div class="col-xs-9 nopaddingLeft">
+								<input type="text" class="form-control borderGreen ng-pristine ng-untouched ng-valid ng-empty" ng-model="history.historyName" ng-change="checkChangeHistoryPart()">
+							</div>
+							<div class="col-xs-2 ">
+								<button class="btn col-xs-12 btn_green btn_big" ng-click="tarnsformHistory()">Transform</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div ng-repeat="ruleForHistory in history.ruleForHistoryDto">
+				<div class="col-xs-12 borderGreen col-xs-12 outerRuleInHistory nopaddingRight margin_bottom_20" >
+					<div class="col-xs-12 nopadding topBottom">
+						<div class="col-xs-1 nopadding">
+							<div class="col-xs-12 nopaddingLeft" style="min-width: 80px;"><h4 class="colorGreen">Rule {{$index + 1}}</h4></div>
+						</div>
+						<div class="col-xs-3 nopadding" >
+							<div class="col-xs-12 nopaddingLeft">
+								<select class=" pointer form-control borderGreen corpusSelectForRulePage" ng-model="ruleForHistory.ruleId" ng-change="checkChangeHistoryPart()">
+									<!-- <option value="" disabled="" ></option> -->
+									<option ng-selected="ruleForHistory.ruleIdtest == historyRule.ruleId" ng-repeat="historyRule in rules"  value="{{historyRule.ruleId}}" >{{$index+1}}. {{historyRule.ruleName}}</option>
+								</select>
+								
+							</div>
+						</div>
+						
+						
+						<div class="col-xs-1 ruleTransform">
+							<button class="btn col-xs-12 btn_green btn_big" ng-click="ruleUp($index); checkChangeHistoryPart()">Up</button>
+						</div>
+						<div class="col-xs-1 ruleTransform">
+							<button class="btn col-xs-12 btn_green btn_big" ng-click="ruleDown($index); checkChangeHistoryPart()">Down</button>
+						</div>
+						<div class="col-xs-1 ruleTransform">
+							<button class="btn col-xs-12 btn_green btn_big" ng-click="addNewRuleOnHistoryPage(history, '2');">Add</button>
+						</div>
+						<div class="col-xs-1 ruleTransform">
+							<button class="btn col-xs-12 btn_green btn_big" ng-click="deleteNewRuleOnHistoryPage(history, $index); checkChangeHistoryPart()">Delete</button>
+						</div>
+						<!-- <div class="col-xs-1 "></div> -->
+						<div class="col-xs-2 ">
+							<button class="btn col-xs-12 btn_green btn_big" ng-click="goToOnRule(ruleForHistory.ruleId)">Go To</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 nopadding" ng-show="intermediateOutput.intermediateOutputArray[$index].open">
+					<div class="col-xs-12 nopaddingRight">
+						<div class="col-xs-12 col-xs-12 outerOutput nopadding">
+							<div class="col-xs-12 nopadding topBottom" style="margin-bottom: 35px;">
+								<div class="col-xs-2 nopadding">
+									<div class="col-xs-12 nopadding"><h4 class="colorGreen">Intermediate Results</h4></div>
+								</div>
+								<div class="col-xs-5 nopaddingLeft transformInput">
+									<input type="text" id="outputTransform{{$index}}" ng-readonly="disabledInputField" class="form-control borderGreen " ng-model="intermediateOutput.intermediateOutputArray[$index].intermediateOutput" >
+								</div>
+								<div class="col-xs-2 ">
+									<button class="btn col-xs-12 btn_green btn_big" ngclipboard data-clipboard-target="#outputTransform{{$index}}">Copy</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 nopadding" >
+				<div class="col-xs-12 nopaddingRight">
+					<div class="col-xs-12 col-xs-12 outerOutput nopadding">
+						<div class="col-xs-12 nopadding topBottom">
+							<div class="col-xs-2 nopadding">
+								<div class="col-xs-12 nopadding"><h4 class="colorGreen">Output Result</h4></div>
+							</div>
+							<div class="col-xs-5 nopaddingLeft transformInput">
+								<input type="text" id="outputTransform" ng-readonly="disabledInputField" class="form-control borderGreen " ng-model="intermediateOutput.transformOutput" >
+							</div>
+							<div class="col-xs-2 ">
+								<button class="btn col-xs-12 btn_green btn_big" ngclipboard data-clipboard-target="#outputTransform">Copy</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 borderGreenTop col-xs-12 nopadding margin_top_20">
+				<div class="col-xs-12 nopaddingRight">
+					<div class="col-xs-12 col-xs-12 outerOutput nopadding">
+						<div class="col-xs-12 nopadding topBottom">
+							<div class="col-xs-2 nopadding">
+								<div class="col-xs-12 nopadding"><h4 class="colorGreen">From Corpus</h4></div>
+							</div>
+							<div class="col-xs-6 nopaddingLeft">
+								<div class="col-xs-12 nopadding" >
+									<select class=" pointer form-control borderGreen corpusSelectForRulePage" ng-model="corpusConvert.corpusIdFrom">
+										<option value="" selected></option>
+										<option ng-repeat="corpusConvert in allCorpus.allCorpus" ng-value="{{corpusConvert.corpusId}}">{{$index+1}}. {{corpusConvert.corpusName}}</option>
+									</select>
+									
+								</div>
+							</div>
+							<div class="col-xs-2 ">
+								<button class="btn col-xs-12 btn_green btn_big" ng-click="goToOnCorpus(corpusConvert.corpusIdFrom)">Go To</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 nopaddingRight">
+					<div class="col-xs-12 col-xs-12 outerOutput nopadding">
+						<div class="col-xs-12 nopadding topBottom">
+							<div class="col-xs-2 nopadding">
+								<div class="col-xs-12 nopadding"><h4 class="colorGreen">To Corpus</h4></div>
+							</div>
+							<div class="col-xs-6 nopaddingLeft">
+								<div class="col-xs-12 nopadding">
+									<select class=" pointer form-control borderGreen corpusSelectForRulePage" ng-model="corpusConvert.corpusIdTo">
+										<option ng-value="" selected></option>
+										<option ng-repeat="corpusConvert in allCorpus.allCorpus" ng-value="{{corpusConvert.corpusId}}">{{$index+1}}. {{corpusConvert.corpusName}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-xs-2 ">
+								<button class="btn col-xs-12 btn_green btn_big" ng-click="goToOnCorpus(corpusConvert.corpusIdTo)">Go To</button>
+							</div>
+							<div class="col-xs-2 ">
+								<button class="btn col-xs-12 btn_green btn_big" ng-click="convertHistory(corpusConvert)">Convert</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
